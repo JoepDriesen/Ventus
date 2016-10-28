@@ -23,8 +23,8 @@ body {
 	user-select: none;
 }
 
-/* Loading Screen */
-#loading-screen {
+/* Login Screen */
+#login-screen {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -37,10 +37,10 @@ body {
 
 	font-weight: 300;
 
-	background-color:  #365d98;
+	background-color:  #333;
 }
 
-#loading-screen section {
+#login-screen section {
 	position: relative;
 	bottom: 20px;
 	left: 20%;
@@ -52,13 +52,13 @@ body {
 	color: rgba(255,255,255,.9);
 }
 
-#loading-screen .content {
+#login-screen .content {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 }
 
-#loading-screen .content h1 {
+#login-screen .content h1 {
 	display: inline;
 
 	font-size: 80px;
@@ -68,7 +68,7 @@ body {
 	margin: 0;
 }
 
-#loading-screen .content h2 {
+#login-screen .content h2 {
 	display: inline;
 
 	font-size: 18px;
@@ -78,14 +78,28 @@ body {
 	color: rgba(255,255,255,.7);
 }
 
-#loading-screen .content p {
+#login-screen .content p {
 	font-size: 20px;
 
 	padding: 0;
 	margin: 0;
 }
 
-#loading-screen.hide {
+#login-screen .content #login-form {
+    display: none;
+}
+
+#login-screen .content #login-form input {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    display: block;
+    margin: 10px 0;
+    padding: 15px;
+    width: 100%;
+}
+
+#login-screen.hide {
 	-webkit-animation: moveout 1.5s .2s ease forwards;
 	-moz-animation: moveout 1.5s .2s ease forwards;
 	animation: moveout 1.5s .2s ease forwards;

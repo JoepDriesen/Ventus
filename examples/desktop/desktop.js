@@ -4,6 +4,8 @@
  */
 (function($, Ventus) {
 	$(document).ready(function() {
+        
+        /**
 		var wm = new Ventus.WindowManager();
 
 		window.wm = wm; // For debugging reasons
@@ -56,8 +58,7 @@
 			opacity: 1 // To fix problems with chrome video on Linux
 		});
 
-		/*playerWin.titlebar = false;
-		playerWin.widget = true;*/
+		
 
 		var aboutWin = wm.createWindow.fromQuery('.about-app', {
 			title: 'About Ventus',
@@ -67,8 +68,10 @@
 			y: 380
 		});
 
+**/
 		// Hide loader when loaded
-		var loader = $("#loading-screen");
+		var loader = $("#login-screen .loader");
+		var login_form = $("#login-screen #login-form");
 
 		// For look & feel reasons
 		function openWithDelay(win, delay) {
@@ -76,35 +79,42 @@
 		}
 
 		function init() {
-			loader.addClass('hide');
-			loader.on(Ventus.browser.animationEventName(), function() {
-				loader.hide();
+			loader.fadeOut( 500, function() {
+                login_form.slideDown( 500, function() {
+                
+                    $( '#login-screen #login-form input' ).keypress( function( e ) {
+                        
+                        if ( e.which == 13 ) {
 
-				// Open windows
-				openWithDelay(terminalWin, 0);
-				openWithDelay(todoWin, 200);
-				openWithDelay(aboutWin, 400);
-				openWithDelay(playerWin, 600);
-			});
+                            var login_screen = $("#login-screen");
+                            login_screen.addClass( 'hide' );
+                            login_screen.on(Ventus.browser.animationEventName(), function() {
+                                login_screen.hide();
+
+                                // Open windows
+                                //openWithDelay(terminalWin, 0);
+                                //openWithDelay(todoWin, 200);
+                                //openWithDelay(aboutWin, 400);
+                                //openWithDelay(playerWin, 600);
+                            });
+                            
+                        }
+
+                    } );
+                    
+                    $( '#login-screen #login-form input:first-child' ).select();
+                
+                } );
+                
+            } );
+            
 		}
 
 		setTimeout(function() {
-			var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-			var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-			var $browserAlert = $('.browser-overlay');
+			
+            init();
 
-			if(!isChrome && !isSafari) {
-				$browserAlert.find('.close-button').click(function() {
-					$browserAlert.hide();
-
-					init();
-				});
-
-				$browserAlert.show();
-			} else {
-				init();
-			}
-		}, 3000);
+		}, 500);
 
 
 		// Exposé test button
@@ -112,5 +122,7 @@
 			wm.mode = 'expose';
 			return false;
 		}, 1000));
+        
+        
 	});
 })($, Ventus);
